@@ -22,6 +22,9 @@
 - Mobile menu (≤960px): "M2 Thumb sheet" — floating Menu pill at the bottom opens a bottom card with
   four icon tiles + full-width survey button; page dims/blurs; pill hides while #survey is on screen.
   Replaced the old burger + full-screen dark drawer. Nav logo centred on phones.
+- Company profile: only entry point is the footer Company column link "Company profile (PDF)". It opens an
+  in-page viewer (page images public/profile/p-N.jpg) with the Download PDF button in the viewer bar.
+  PDF = digital brochure (8 pp). Images not iframe: mobile browsers do not render embedded PDFs reliably.
 - Footer: mobile collapsible Systems/Company; bar "© 2026 Kuontam Systems | Designed by NAVAC GLOBAL"
   — the whole "NAVAC GLOBAL" is the link (https://navac.co.ke), colour #ff6170, no underline.
 - Removed on request: cursor X/Y readout, side page rail, "Sheet NN ·" labels, "Hover a part…" hint,

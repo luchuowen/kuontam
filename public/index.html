@@ -397,6 +397,26 @@ footer a{transition:color .25s}footer a:hover{color:#fff}
 .mask{overflow:hidden}.mask>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease)}
 .mask.in>span{transform:none}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}.mask>span,.hero h1 .ln span{transform:none}}
+
+/* company profile: in-page viewer (opened from the footer link) */
+.pv{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;background:rgba(28,26,27,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s .45s}
+.pv.open{opacity:1;visibility:visible;transition:opacity .45s}
+.pv .pvbar{display:flex;align-items:center;gap:1rem;padding:.7rem var(--gut);background:var(--paper);border-bottom:1px solid var(--line2);transform:translateY(-100%);transition:transform .6s var(--ease)}
+.pv.open .pvbar{transform:none}
+.pv .pvt{display:grid;line-height:1.2;min-width:0}
+.pv .pvt b{font:700 1rem var(--display);letter-spacing:-.02em}
+.pv .pvt span{font:500 .6rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv .pvbar .sp{flex:1}
+.pv .pvn{font:600 .66rem var(--mono);letter-spacing:.1em;color:var(--mute)}
+.pv .pdl{display:inline-flex;align-items:center;gap:.55rem;background:var(--red);color:#fff;min-height:44px;padding:0 1.1rem;font:600 .7rem var(--mono);letter-spacing:.12em;text-transform:uppercase;transition:background .3s}
+.pv .pdl:hover{background:var(--red2)}
+.pv .px{width:44px;height:44px;border:1px solid var(--ink);display:grid;place-items:center;font-size:1.2rem;line-height:1}
+.pv .pvs{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:1.6rem var(--gut) 3rem;display:grid;justify-items:center;gap:1.2rem}
+.pv .pvs img{width:min(820px,100%);height:auto;aspect-ratio:909/1287;background:#fff;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);opacity:0;transform:translateY(16px);transition:opacity .6s,transform .8s var(--ease)}
+.pv.open .pvs img{opacity:1;transform:none}
+.pv.open .pvs img:nth-child(2){transition-delay:.08s}
+body.pvlock{overflow:hidden}
+@media(max-width:700px){.pv .pvn{display:none}.pv .pdl span{display:none}.pv .pdl{padding:0 .9rem}.pv .pvs{padding:1rem .6rem 6rem;gap:.7rem}}
 </style></head><body>
 
 <div class="wire-top" id="wt" aria-hidden="true"></div>
@@ -415,6 +435,13 @@ footer a{transition:color .25s}footer a:hover{color:#fff}
   </div>
   <a class="cta" href="#survey">Book a site survey →</a>
 </nav>
+<div class="pv" id="pv" role="dialog" aria-modal="true" aria-label="Kuontam company profile" aria-hidden="true">
+  <div class="pvbar"><div class="pvt"><b>Company profile</b><span>Kuontam Systems · PDF · 8 pages</span></div><span class="sp"></span>
+    <span class="pvn" id="pvn">1 / 8</span>
+    <a class="pdl" href="profile/kuontam-company-profile.pdf" download="Kuontam Systems - Company Profile.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Download PDF</span></a>
+    <button class="px" id="pvx" aria-label="Close profile">×</button></div>
+  <div class="pvs" id="pvs"><img data-src="profile/p-1.jpg" alt="Company profile page 1 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-2.jpg" alt="Company profile page 2 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-3.jpg" alt="Company profile page 3 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-4.jpg" alt="Company profile page 4 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-5.jpg" alt="Company profile page 5 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-6.jpg" alt="Company profile page 6 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-7.jpg" alt="Company profile page 7 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-8.jpg" alt="Company profile page 8 of 8" width="909" height="1287" loading="lazy"></div>
+</div>
 <button class="mpill" id="mpill" aria-controls="msheet" aria-expanded="false"><span class="dot"></span><span class="t1">Menu</span><span class="t2">Close</span></button>
 
 
@@ -553,7 +580,7 @@ footer a{transition:color .25s}footer a:hover{color:#fff}
   <div class="top">
     <div class="fbrand"><img src="img/logo_white.png" alt="Kuontam Systems"><p>Solar, electrical, security, fire and network systems for Kenyan buildings.</p></div>
     <details class="fcol" open><summary><h4>Systems</h4></summary><ul><li><a href="#systems">Solar &amp; Electrical</a></li><li><a href="#systems">Automation</a></li><li><a href="#systems">Access &amp; CCTV</a></li><li><a href="#systems">Fire Detection</a></li><li><a href="#systems">Structured Cabling</a></li></ul></details>
-    <details class="fcol" open><summary><h4>Company</h4></summary><ul><li><a href="#method">How we work</a></li><li><a href="#sectors">Sectors</a></li><li><a href="#faq">FAQ</a></li><li><a href="#survey">Book a site survey</a></li></ul></details>
+    <details class="fcol" open><summary><h4>Company</h4></summary><ul><li><a href="#method">How we work</a></li><li><a href="#sectors">Sectors</a></li><li><a href="#faq">FAQ</a></li><li><a href="#survey">Book a site survey</a></li><li><a href="profile/kuontam-company-profile.pdf" data-profile>Company profile (PDF)</a></li></ul></details>
   </div>
   <div class="fbar"><span>© 2026 Kuontam Systems</span><span>Designed by <a href="https://navac.co.ke" target="_blank" rel="noopener">NAVAC GLOBAL</a></span></div>
 </div></footer>
@@ -615,6 +642,18 @@ function setOut(o){out=o;dwg.classList.toggle('out',o);tg.setAttribute('aria-pre
   drawK(false);clearInterval(bt);bt=setInterval(()=>{soc=Math.max(58,Math.min(90,soc+(out?-1:1)));drawB()},900);}
 tg.onclick=()=>{user=true;clearInterval(timer);setOut(!out)};
 if(!RM){setInterval(()=>drawK(true),1800);setTimeout(()=>{if(!user){setOut(true);timer=setInterval(()=>{if(!user)setOut(!out)},10000)}},5500)}
+
+/* company profile viewer: opens in-page; download lives in the viewer bar */
+const pv=$('#pv'),pvs=$('#pvs'),pvn=$('#pvn');let pvLast=null;
+function pvOpen(e){if(e)e.preventDefault();pvLast=document.activeElement;
+  pvs.querySelectorAll('img[data-src]').forEach(i=>{i.src=i.dataset.src;i.removeAttribute('data-src')});
+  if(typeof dset==='function')dset(false);
+  pv.classList.add('open');pv.setAttribute('aria-hidden','false');document.body.classList.add('pvlock');pvs.scrollTop=0;$('#pvx').focus()}
+function pvClose(){pv.classList.remove('open');pv.setAttribute('aria-hidden','true');document.body.classList.remove('pvlock');if(pvLast)pvLast.focus()}
+$$('[data-profile]').forEach(a=>a.addEventListener('click',pvOpen));
+$('#pvx').onclick=pvClose;pv.addEventListener('click',e=>{if(e.target===pv||e.target===pvs)pvClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pv.classList.contains('open'))pvClose()});
+pvs.addEventListener('scroll',()=>{const imgs=pvs.querySelectorAll('img');let k=0;imgs.forEach((im,i)=>{if(im.offsetTop-pvs.scrollTop<pvs.clientHeight*.5)k=i});pvn.textContent=(k+1)+' / '+imgs.length},{passive:true});
 /* faq: one open at a time */
 const qs=$$('.qa details');qs.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)qs.forEach(o=>{if(o!==d)o.open=false})}));
 /* form */

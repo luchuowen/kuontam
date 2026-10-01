@@ -17,5 +17,5 @@
   "append_only_dirs": [".factory/history"],
   "critical_paths": ["firebase.json", ".firebaserc", ".github/workflows/**"],
   "source_globs": ["public/**", "firebase.json", "scripts/**", ".claude/**", ".factory/manifest.json", "CLAUDE.md"],
-  "caps": {"CLAUDE.md": 80, ".factory/DECISIONS.md": 250, "public_total_mb": 6, "image_max_kb": 900}
+  "caps": {"CLAUDE.md": 80, ".factory/DECISIONS.md": 250, "public_total_mb": 9, "image_max_kb": 900}
 }
