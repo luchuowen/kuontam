@@ -1,0 +1,1 @@
+{"hosting":{"public":"public","ignore":["firebase.json","**/.*"],"headers":[{"source":"**/*.@(jpg|png|woff2|css)","headers":[{"key":"Cache-Control","value":"public, max-age=604800"}]}]}}

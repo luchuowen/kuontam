@@ -1,0 +1,21 @@
+{
+  "playbook_version": "2.1.0",
+  "applied_migrations": ["0->2.1.0"],
+  "project": "kuontam-website",
+  "checks": {
+    "site": "python3 scripts/site-check.py",
+    "guards": "python3 scripts/site-check.py --full"
+  },
+  "gates": [
+    {"name": "no-placeholder-copy", "pattern": "(?i)lorem ipsum|\\bTODO\\b|\\bFIXME\\b|\\[placeholder\\]", "paths": ["public/**/*.html", "public/**/*.css"], "exclude": []},
+    {"name": "no-insecure-urls", "pattern": "http://(?!www\\.w3\\.org)", "paths": ["public/**/*.html", "public/**/*.css"], "exclude": []},
+    {"name": "no-console-log", "pattern": "console\\.log\\(", "paths": ["public/**/*.html"], "exclude": []},
+    {"name": "credit-is-navac-global-caps", "pattern": "NAVAC Global</a>", "paths": ["public/**/*.html"], "exclude": []},
+    {"name": "no-third-party-font-cdn", "pattern": "fonts\\.googleapis\\.com|fonts\\.gstatic\\.com", "paths": ["public/**/*.html", "public/**/*.css"], "exclude": []}
+  ],
+  "protected": [".firebaserc", "docs/Software_Factory_Playbook.md", "public/fonts/**"],
+  "append_only_dirs": [".factory/history"],
+  "critical_paths": ["firebase.json", ".firebaserc", ".github/workflows/**"],
+  "source_globs": ["public/**", "firebase.json", "scripts/**", ".claude/**", ".factory/manifest.json", "CLAUDE.md"],
+  "caps": {"CLAUDE.md": 80, ".factory/DECISIONS.md": 250, "public_total_mb": 6, "image_max_kb": 900}
+}

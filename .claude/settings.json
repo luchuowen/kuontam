@@ -1,0 +1,30 @@
+{
+  "effortLevel": "medium",
+  "permissions": {
+    "deny": [
+      "Bash(git push --force:*)", "Bash(git push -f:*)", "Bash(git reset --hard:*)",
+      "Bash(git rebase:*)", "Bash(git commit --amend:*)", "Bash(firebase projects:delete:*)",
+      "Bash(firebase hosting:disable:*)", "Read(./.env*)", "Read(**/*service-account*.json)"
+    ],
+    "ask": [
+      "Edit(firebase.json)", "Edit(.github/workflows/**)", "Bash(firebase deploy:*)"
+    ],
+    "allow": [
+      "Bash(bash scripts/factory-check.sh:*)", "Bash(python3 scripts/site-check.py:*)",
+      "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git show:*)",
+      "Bash(curl -sI https://kuontam-website.web.app:*)", "Bash(curl -sI https://kuontam.navac.co.ke:*)",
+      "Bash(npx serve public:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {"matcher": "Edit|Write|MultiEdit", "hooks": [{"type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard.sh\""}]}
+    ],
+    "Stop": [
+      {"hooks": [{"type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-gate.sh\""}]}
+    ],
+    "SessionStart": [
+      {"matcher": "compact|resume", "hooks": [{"type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-context.sh\""}]}
+    ]
+  }
+}
