@@ -19,6 +19,9 @@
 - Systems: accordion rows with "wired components" nodes + sticky image wipe. No section lead paragraph.
 - Sectors: four expanding panels, auto-cycle 4.5s on desktop until hovered. Owner: keep as is, never revert.
 - FAQ: one open at a time. Survey: three-step stepper form, vertically centred with its copy.
+- Mobile menu (≤960px): "M2 Thumb sheet" — floating Menu pill at the bottom opens a bottom card with
+  four icon tiles + full-width survey button; page dims/blurs; pill hides while #survey is on screen.
+  Replaced the old burger + full-screen dark drawer. Nav logo centred on phones.
 - Footer: mobile collapsible Systems/Company; bar "© 2026 Kuontam Systems | Designed by NAVAC GLOBAL"
   — the whole "NAVAC GLOBAL" is the link (https://navac.co.ke), colour #ff6170, no underline.
 - Removed on request: cursor X/Y readout, side page rail, "Sheet NN ·" labels, "Hover a part…" hint,
