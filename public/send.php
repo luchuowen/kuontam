@@ -48,10 +48,28 @@ $body = "New site survey request from the website\n\n"
       . "Systems:   " . ($systems ? implode(', ', $systems) : '-') . "\n\n"
       . "Sent from: " . ($origin ?: 'unknown') . "\n"
       . "Time:      " . date('D j M Y, H:i') . " (server time)\n";
-$headers = "From: Kuontam Website <$FROM>\r\n"
-         . "Content-Type: text/plain; charset=UTF-8\r\n"
-         . "X-Mailer: kuontam-site\r\n";
-if (!@mail($TO, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . $FROM)) out(500, false, 'Could not send. Please call or email us.');
+// PHP mail() is disabled on this host, so deliver over SMTP to the local mail server.
+// The recipient mailbox lives on this same server, so no SMTP login is needed.
+function smtp_send($to, $from, $subject, $body) {
+  $fp = @fsockopen('localhost', 25, $en, $es, 10);
+  if (!$fp) return false;
+  stream_set_timeout($fp, 15);
+  $read = function () use ($fp) { $d = ''; while (($l = fgets($fp, 515)) !== false) { $d .= $l; if (isset($l[3]) && $l[3] === ' ') break; } return $d; };
+  $cmd  = function ($c, $ok) use ($fp, $read) { fwrite($fp, $c . "\r\n"); $r = $read(); return strpos($r, (string)$ok) === 0; };
+  $host = 'kuontamsystems.co.ke';
+  if (strpos($read(), '220') !== 0) return false;
+  if (!$cmd("EHLO $host", 250)) return false;
+  if (!$cmd("MAIL FROM:<$from>", 250)) return false;
+  if (!$cmd("RCPT TO:<$to>", 250)) return false;
+  if (!$cmd('DATA', 354)) return false;
+  $msg = "From: Kuontam Website <$from>\r\nTo: <$to>\r\nSubject: =?UTF-8?B?" . base64_encode($subject) . "?=\r\n"
+       . "Date: " . date('r') . "\r\nMessage-ID: <" . bin2hex(random_bytes(8)) . "@$host>\r\n"
+       . "MIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n"
+       . preg_replace('/^\./m', '..', str_replace("\n", "\r\n", $body));
+  if (!$cmd($msg . "\r\n.", 250)) return false;
+  $cmd('QUIT', 221); fclose($fp); return true;
+}
+if (!smtp_send($TO, $FROM, $subject, $body)) out(500, false, 'Could not send. Please call or email us.');
 
 $hits[] = time(); @file_put_contents($rl, implode("\n", $hits));
 out(200, true, 'Sent');
