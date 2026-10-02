@@ -51,3 +51,8 @@
 - robots.txt + sitemap.xml at site root; JSON-LD (schema.org Electrician) in <head>.
 - Google Search Console: URL-prefix property https://kuontamsystems.co.ke/ under luchuowen@gmail.com, verified by public/google3955a567f2ad3ef1.html. Never delete that file.
 - Sitemap submitted and homepage indexing requested on 2026-10-02.
+- SEO pass (2026-10-02): keyword title/description, twitter tags, apple-touch-icon, og:locale en_KE, JSON-LD @graph (business + 5 services + WebSite).
+- Images: responsive WebP (700/900 and 1100/1600 wide) via srcset with JPEG fallback; originals *_4k.jpg kept only as masters (not referenced). Logos served at 96px.
+- 404.html (noindex) + public/.htaccess (https/bare-domain redirect, ErrorDocument, 30-day image/font cache). .htaccess lives in the repo now; upload it with the site.
+- Firebase (kuontam.navac.co.ke, web.app) 301-redirects every path to https://kuontamsystems.co.ke/ so Google sees one site.
+- Lighthouse (local): Performance 95, Accessibility 100, Best Practices 100, SEO 100.

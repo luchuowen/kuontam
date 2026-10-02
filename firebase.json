@@ -1,1 +1,1 @@
-{"hosting": {"public": "public", "ignore": ["firebase.json", "**/.*", "send.php", "email-template.php"], "headers": [{"source": "**/*.@(jpg|png|woff2|css)", "headers": [{"key": "Cache-Control", "value": "public, max-age=604800"}]}]}}
+{"hosting": {"public": "public", "ignore": ["firebase.json", "**/.*", "send.php", "email-template.php"], "headers": [{"source": "**/*.@(jpg|png|woff2|css)", "headers": [{"key": "Cache-Control", "value": "public, max-age=604800"}]}], "redirects": [{"regex": "^/(.*)$", "destination": "https://kuontamsystems.co.ke/:1", "type": 301}]}}
