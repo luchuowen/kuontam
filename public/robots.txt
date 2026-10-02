@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /send.php
+Disallow: /email-template.php
+
+Sitemap: https://kuontamsystems.co.ke/sitemap.xml

@@ -46,3 +46,8 @@
 
 ## Known gaps (follow-ups, not yet requested)
 - "WhatsApp us" button in the survey section links to #survey; it needs the business WhatsApp number.
+
+## SEO basics (2026-10-02)
+- robots.txt + sitemap.xml at site root; JSON-LD (schema.org Electrician) in <head>.
+- Google Search Console: URL-prefix property https://kuontamsystems.co.ke/ under luchuowen@gmail.com, verified by public/google3955a567f2ad3ef1.html. Never delete that file.
+- Sitemap submitted and homepage indexing requested on 2026-10-02.
