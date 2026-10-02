@@ -37,10 +37,12 @@
 - og.jpg 1200×630 built from `source/og-image.html`; favicon = red mark, 192px.
 
 ## Survey form
-- Submits to public/send.php on the cPanel host (PHP mail() to info@kuontamsystems.co.ke, From website@).
+- Submits to public/send.php on the cPanel host. PHP mail() is disabled there, so it delivers over SMTP to localhost:25 (info@kuontamsystems.co.ke, From website@).
+- Email design: "Spec sheet" (picked 2026-10-02), HTML in public/email-template.php plus a plain-text part; ref KS-yymmdd-XXXX, Nairobi time, logo from /img/logo_red_w.png.
+- cPanel uploads: files must be 0644 and folders 0755 (extracted zips came out 0600/0700 and broke images/fonts).
   Guards: honeypot `company_site`, min 3s fill time, 5 requests/IP/hour. CORS allows kuontamsystems.co.ke,
   www, kuontam.navac.co.ke and kuontam-website.web.app; the Firebase copy posts cross-origin to it.
-  send.php is excluded from Firebase deploys (firebase.json ignore).
+  send.php and email-template.php are excluded from Firebase deploys (firebase.json ignore).
 
 ## Known gaps (follow-ups, not yet requested)
 - "WhatsApp us" button in the survey section links to #survey; it needs the business WhatsApp number.
