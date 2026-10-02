@@ -36,5 +36,11 @@
 - Photos: Gemini-generated, upscaled with Real-ESRGAN, served as `img/A-0N_4k.jpg` web-sized.
 - og.jpg 1200×630 built from `source/og-image.html`; favicon = red mark, 192px.
 
+## Survey form
+- Submits to public/send.php on the cPanel host (PHP mail() to info@kuontamsystems.co.ke, From website@).
+  Guards: honeypot `company_site`, min 3s fill time, 5 requests/IP/hour. CORS allows kuontamsystems.co.ke,
+  www, kuontam.navac.co.ke and kuontam-website.web.app; the Firebase copy posts cross-origin to it.
+  send.php is excluded from Firebase deploys (firebase.json ignore).
+
 ## Known gaps (follow-ups, not yet requested)
-- Survey form only shows a success message; it does not send the lead anywhere.
+- "WhatsApp us" button in the survey section links to #survey; it needs the business WhatsApp number.
