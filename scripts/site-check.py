@@ -76,7 +76,8 @@ def site():
         t = Tags(); t.feed(p.read_text()); t.close(); parsed[p] = t
         fails.extend(f"html {p.relative_to(ROOT)}: {e}" for e in t.errs[:5])
         for r in t.refs:
-            target = (p.parent / r.split("#")[0].split("?")[0])
+            ref = r.split("#")[0].split("?")[0]
+            target = (ROOT / "public" / ref.lstrip("/")) if ref.startswith("/") else (p.parent / ref)
             if r.split("#")[0] and not target.exists():
                 fails.append(f"missing ref in {p.relative_to(ROOT)}: {r}")
         for a in re.findall(r'href="#([\w-]+)"', p.read_text()):
