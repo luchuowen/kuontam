@@ -17,11 +17,12 @@ function kq_email_html(array $d): string {
     return '<tr><td class="lbl" style="'.$bd.'padding:16px 0;width:128px;vertical-align:top;font:bold 10px/1.6 '.$M.';letter-spacing:.16em;text-transform:uppercase;color:'.$MUTE.'">'.$k.'</td>'
          . '<td style="'.$bd.'padding:14px 0 10px;vertical-align:top;font:15px/1.5 '.$S.';color:'.$INK.'">'.$v.'</td></tr>';
   };
-  $btn = fn($label, $href, $bg, $fg, $bd) => '<a href="'.$href.'" style="display:inline-block;background:'.$bg.';color:'.$fg.';border:1px solid '.$bd.';font:bold 12px/1 '.$S.';letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:16px 24px">'.$label.'</a>';
+  $btn = fn($label, $href, $bg, $fg, $bd) => '<a href="'.$href.'" style="display:inline-block;background:'.$bg.';color:'.$fg.';border:1px solid '.$bd.';font:bold 12px/1 '.$S.';letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:16px 20px">'.$label.'</a>';
 
   $loc = $d['location'] !== '' ? $e($d['location']) : 'Location not given';
   $tel = 'tel:'.$e($d['tel']);
   $wa  = 'https://wa.me/'.$e($d['wa']);
+  $mail = 'mailto:'.$e($d['email'] ?? '').'?subject='.rawurlencode('Your site survey request - Kuontam Systems');
   $pre = $e($d['name'].' · '.$d['building'].' · '.($d['systems'] ? implode(', ', $d['systems']) : 'systems not specified').' · call '.$d['phone']);
 
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -55,7 +56,8 @@ function kq_email_html(array $d): string {
   .     '<a href="'.$tel.'" style="display:block;font:bold 26px/1.2 '.$S.';color:'.$INK.';letter-spacing:-.3px;margin:8px 0 18px;text-decoration:none">'.$e($d['phone']).'</a>'
   .     '<table role="presentation" cellpadding="0" cellspacing="0"><tr>'
   .       '<td class="stack gap" style="padding-right:10px">'.$btn('Call now', $tel, $RED, '#ffffff', $RED).'</td>'
-  .       '<td class="stack">'.$btn('WhatsApp', $wa, '#ffffff', $INK, $INK).'</td>'
+  .       '<td class="stack gap" style="padding-right:10px">'.$btn('WhatsApp', $wa, '#ffffff', $INK, $INK).'</td>'
+  .       '<td class="stack">'.$btn('Email', $mail, '#ffffff', $INK, $INK).'</td>'
   .     '</tr></table>'
   .   '</td></tr></table>'
   . '</td></tr>'
@@ -65,6 +67,7 @@ function kq_email_html(array $d): string {
   .   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid '.$INK.'">'
   .     $row('Name', $e($d['name']))
   .     $row('Phone', '<a href="'.$tel.'" style="color:'.$INK.';font-weight:bold;text-decoration:none">'.$e($d['phone']).'</a>')
+  .     $row('Email', '<a href="'.$mail.'" style="color:'.$INK.';text-decoration:underline">'.$e($d['email'] ?? '').'</a>')
   .     $row('Location', $loc)
   .     $row('Building', $e($d['building']))
   .     $row('Systems', $chips, true)

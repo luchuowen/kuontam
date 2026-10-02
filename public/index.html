@@ -433,7 +433,7 @@ body.pvlock{overflow:hidden}
 /* WhatsApp chat window */
 .wadim{position:fixed;inset:0;z-index:84;background:rgba(28,26,27,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
 .wadim.on{opacity:1;visibility:visible;transition:opacity .4s}
-.wa{position:fixed;right:24px;bottom:24px;z-index:85;width:360px;max-width:calc(100% - 32px);background:var(--paper);color:var(--ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.55);transform:translateY(24px) scale(.97);transform-origin:bottom right;opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .35s,visibility 0s .5s}
+.wa{position:fixed;right:24px;bottom:24px;z-index:85;width:400px;max-width:calc(100% - 32px);background:var(--paper);color:var(--ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.55);transform:translateY(24px) scale(.97);transform-origin:bottom right;opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .35s,visibility 0s .5s}
 .wa.on{transform:none;opacity:1;visibility:visible;transition:transform .5s var(--ease),opacity .35s}
 .wa .wh{background:var(--ink);color:#fff;padding:.9rem 1rem;display:flex;align-items:center;gap:.75rem}
 .wa .av{width:38px;height:38px;background:var(--red);display:grid;place-items:center;font:800 .85rem var(--display);flex:none;position:relative}
@@ -441,11 +441,12 @@ body.pvlock{overflow:hidden}
 .wa .wh b{display:block;font:600 .95rem var(--display)}
 .wa .wh small{font:500 .58rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#a8a19c}
 .wa .wx{margin-left:auto;width:38px;height:38px;border:1px solid #4a4446;color:#fff;font-size:1.15rem;line-height:1;display:grid;place-items:center}
-.wa .wb{padding:1rem;display:grid;gap:.8rem;background-image:linear-gradient(to right,rgba(35,31,32,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(35,31,32,.04) 1px,transparent 1px);background-size:20px 20px}
-.wa .bub{justify-self:start;background:#fff;border:1px solid var(--line);padding:.65rem .85rem;font-size:.95rem}
-.wa .bub small{display:block;font:500 .56rem var(--mono);letter-spacing:.08em;color:var(--mute);margin-top:.2rem}
-.wa .chips{display:flex;flex-wrap:wrap;gap:6px}
-.wa .chips button{border:1px solid var(--line);background:#fff;padding:.45rem .7rem;font:500 .85rem var(--display);transition:background .2s,color .2s,border-color .2s}
+.wa .wb{padding:1rem;display:grid;gap:6px;background-image:linear-gradient(to right,rgba(35,31,32,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(35,31,32,.04) 1px,transparent 1px);background-size:20px 20px}
+.wa .bub{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem .8rem;flex-wrap:wrap;background:#fff;border:1px solid var(--line);padding:.7rem .85rem;font-size:.95rem;margin-bottom:6px}
+.wa .bub small{font:500 .56rem var(--mono);letter-spacing:.08em;color:var(--mute)}
+.wa .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
+.wa .two{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.wa .chips button{border:1px solid var(--line);background:#fff;padding:.6rem .3rem;text-align:center;white-space:nowrap;font:500 .84rem var(--display);transition:background .2s,color .2s,border-color .2s}
 .wa .chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .wa input,.wa textarea{width:100%;border:1px solid var(--line);background:#fff;padding:.75rem .85rem;font:400 16px/1.4 var(--display);color:var(--ink);border-radius:0;outline:none;transition:border-color .2s}
 .wa input:focus,.wa textarea:focus{border-color:var(--ink)}
@@ -491,7 +492,8 @@ body.waon .mpill{opacity:0;pointer-events:none}
   <div class="wb">
     <div class="bub">How can we help?<small>Mon–Fri 8–5 · Sat 9–1</small></div>
     <div class="chips" id="wachips"><button type="button" aria-pressed="false">Solar &amp; power</button><button type="button" aria-pressed="false">CCTV &amp; access</button><button type="button" aria-pressed="false">Fire alarms</button><button type="button" aria-pressed="false">Automation</button><button type="button" aria-pressed="false">Site survey</button><button type="button" aria-pressed="false">Support</button></div>
-    <input id="waname" placeholder="Your name" autocomplete="name" aria-label="Your name">
+    <div class="two"><input id="waname" placeholder="Your name" autocomplete="name" aria-label="Your name" required><input id="waphone" type="tel" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" required></div>
+    <input id="waemail" type="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required>
     <div class="row"><textarea id="wamsg" rows="1" placeholder="Message" aria-label="Message"></textarea><button class="go" id="wago" aria-label="Continue in WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
   </div>
 </div>
@@ -623,7 +625,7 @@ body.waon .mpill{opacity:0;pointer-events:none}
  <div class="steps"><span class="on">1 · Building</span><span>2 · Systems</span><span>3 · Contact</span><i class="bar"></i></div>
  <fieldset class="st" data-s="1"><legend>What kind of building?</legend><div class="tiles"><label><input type="radio" name="bt" id="bt0" checked><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6"/></svg>Home</span></label><label><input type="radio" name="bt" id="bt1" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M11 21v-3h2v3"/></svg>Office or retail</span></label><label><input type="radio" name="bt" id="bt2" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5M22 9v6"/></svg>School or clinic</span></label><label><input type="radio" name="bt" id="bt3" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V10l6 4V10l6 4V6h6v15zM7 17h2M12 17h2M17 17h2"/></svg>Industrial</span></label><label><input type="radio" name="bt" id="bt4" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h8M8 21V5M8 5h12M8 5l-4 4M18 5v5M17 10h2v3h-2z"/></svg>New development</span></label></div></fieldset>
  <fieldset class="st" data-s="2" hidden><legend>Which systems do you need?</legend><div class="tiles"><label><input type="checkbox" id="sy0" checked><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Solar &amp; power</span></label><label><input type="checkbox" id="sy1" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="9" r="2.5"/><path d="M10 16h4"/></svg>Automation</span></label><label><input type="checkbox" id="sy2" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l13 4-2 5-12-4zM16 11l4-1v5l-4-1M7 13.5V19H4"/></svg>Access &amp; CCTV</span></label><label><input type="checkbox" id="sy3" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-4 2.5-6 .8 2 1.6 3 2.5 3z"/></svg>Fire</span></label><label><input type="checkbox" id="sy4" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v5a3 3 0 0 0 3 3h8a3 3 0 0 1 3 3v7M3 3h4M17 21h4"/></svg>Cabling</span></label></div></fieldset>
- <fieldset class="st" data-s="3" hidden><legend>How do we reach you?</legend><div class="two"><label class="f"><span>Your name</span><input id="q-name" autocomplete="name"></label><label class="f"><span>Phone or WhatsApp</span><input id="q-phone" type="tel" autocomplete="tel"></label><label class="f full"><span>Location</span><input id="q-loc" placeholder="e.g. Karen, Nairobi"></label></div></fieldset>
+ <fieldset class="st" data-s="3" hidden><legend>How do we reach you?</legend><div class="two"><label class="f"><span>Your name</span><input id="q-name" autocomplete="name"></label><label class="f"><span>Phone or WhatsApp</span><input id="q-phone" type="tel" autocomplete="tel"></label><label class="f full"><span>Email</span><input id="q-email" type="email" autocomplete="email" placeholder="you@example.com"></label><label class="f full"><span>Location</span><input id="q-loc" placeholder="e.g. Karen, Nairobi"></label></div></fieldset>
  <div class="nav"><button type="button" class="back" hidden>← Back</button><button type="button" class="next">Continue →</button><button type="submit" class="sub" hidden>Request site survey →</button></div>
  <label class="hp" aria-hidden="true">Website<input name="company_site" tabindex="-1" autocomplete="off"></label>
  <p class="ok" role="status" hidden>Request received. We'll call you to book the survey.</p>
@@ -720,10 +722,10 @@ $('#wax').onclick=waClose;wadim.onclick=waClose;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&wa.classList.contains('on'))waClose()});
 $$('#wachips button').forEach(b=>b.onclick=()=>$$('#wachips button').forEach(c=>c.setAttribute('aria-pressed',c===b)));
 waM.addEventListener('input',()=>{waM.style.height='auto';waM.style.height=Math.min(waM.scrollHeight,120)+'px'});
-waN.addEventListener('input',()=>waN.classList.remove('bad'));
-$('#wago').onclick=()=>{const n=waN.value.trim();if(n.length<2){waN.classList.add('bad');waN.focus();return}
+const waP=$('#waphone'),waE=$('#waemail');[waN,waP,waE].forEach(i=>i.addEventListener('input',()=>i.classList.remove('bad')));
+$('#wago').onclick=()=>{const n=waN.value.trim(),ph=waP.value.trim(),em=waE.value.trim();const bad=[[waN,n.length<2],[waP,!/^\+?[0-9 ()-]{7,20}$/.test(ph)],[waE,!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)]].filter(x=>x[1]).map(x=>x[0]);bad.forEach(i=>i.classList.add('bad'));if(bad.length){bad[0].focus();return}
   const t=$('#wachips button[aria-pressed="true"]'),m=waM.value.trim();
-  let txt='Hello Kuontam Systems, this is '+n+'.';if(t)txt+='\nTopic: '+t.textContent;if(m)txt+='\n\n'+m;
+  let txt='Hello Kuontam Systems, this is '+n+'.\nPhone: '+ph+'\nEmail: '+em;if(t)txt+='\nTopic: '+t.textContent;if(m)txt+='\n\n'+m;
   window.open('https://wa.me/254712219038?text='+encodeURIComponent(txt),'_blank','noopener');waClose()};
 /* faq: one open at a time */
 const qs=$$('.qa details');qs.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)qs.forEach(o=>{if(o!==d)o.open=false})}));
@@ -739,17 +741,18 @@ const faT0=Date.now(),faEnd=/^(www\.)?kuontamsystems\.co\.ke$/.test(location.hos
 fa.addEventListener('submit',async e=>{e.preventDefault();
   const ok=fa.querySelector('.ok'),er=fa.querySelector('.err'),sb=fa.querySelector('.sub'),v=id=>fa.querySelector(id).value.trim();
   ok.hidden=er.hidden=true;fa.querySelectorAll('.f').forEach(f=>f.classList.remove('bad'));
-  const name=v('#q-name'),phone=v('#q-phone');
+  const name=v('#q-name'),phone=v('#q-phone'),email=v('#q-email');
   if(name.length<2){fa.querySelector('#q-name').closest('.f').classList.add('bad');fa.querySelector('#q-name').focus();return}
   if(!/^\+?[0-9 ()-]{7,20}$/.test(phone)){fa.querySelector('#q-phone').closest('.f').classList.add('bad');fa.querySelector('#q-phone').focus();return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){fa.querySelector('#q-email').closest('.f').classList.add('bad');fa.querySelector('#q-email').focus();return}
   const d=new FormData(),txt=i=>i.closest('label').querySelector('span').textContent.trim();
   d.append('building',txt(fa.querySelector('input[name=bt]:checked')));
   fa.querySelectorAll('input[type=checkbox]:checked').forEach(c=>d.append('systems[]',txt(c)));
-  d.append('name',name);d.append('phone',phone);d.append('location',v('#q-loc'));
+  d.append('name',name);d.append('phone',phone);d.append('email',email);d.append('location',v('#q-loc'));
   d.append('company_site',fa.querySelector('[name=company_site]').value);d.append('elapsed',Date.now()-faT0);
   const lbl=sb.textContent;sb.disabled=true;sb.textContent='Sending…';
   try{const r=await fetch(faEnd,{method:'POST',body:d});const j=await r.json().catch(()=>({}));
-    if(r.ok&&j.ok){ok.hidden=false;fa.querySelectorAll('.st input[type=text],.st input:not([type])').forEach(i=>i.value='');fa.querySelectorAll('#q-name,#q-phone,#q-loc').forEach(i=>i.value='')}
+    if(r.ok&&j.ok){ok.hidden=false;fa.querySelectorAll('.st input[type=text],.st input:not([type])').forEach(i=>i.value='');fa.querySelectorAll('#q-name,#q-phone,#q-email,#q-loc').forEach(i=>i.value='')}
     else throw new Error(j.message||'')}
   catch(x){er.innerHTML=(x.message&&x.message!=='Failed to fetch'?x.message+' ':'Could not send right now. ')+'Call <a href="tel:+254712219038">0712 219 038</a> or email <a href="mailto:info@kuontamsystems.co.ke">info@kuontamsystems.co.ke</a>.';er.hidden=false}
   finally{sb.disabled=false;sb.textContent=lbl}});
