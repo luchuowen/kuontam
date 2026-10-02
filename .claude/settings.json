@@ -12,7 +12,7 @@
     "allow": [
       "Bash(bash scripts/factory-check.sh:*)", "Bash(python3 scripts/site-check.py:*)",
       "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git show:*)",
-      "Bash(curl -sI https://kuontam-website.web.app:*)", "Bash(curl -sI https://kuontam.navac.co.ke:*)",
+      "Bash(curl -sI https://kuontam-website.web.app:*)", "Bash(curl -sI https://kuontamsystems.co.ke:*)",
       "Bash(npx serve public:*)"
     ]
   },

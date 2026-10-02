@@ -2,7 +2,7 @@
 
 Single-page website for Kuontam Systems Limited, a Nairobi building-systems contractor (solar & electrical, automation, access control & CCTV, fire detection, structured cabling).
 
-- Live: https://kuontam-website.web.app (custom domain: https://kuontam.navac.co.ke)
+- Live: https://kuontam-website.web.app (domain: https://kuontamsystems.co.ke; old: kuontam.navac.co.ke)
 - Hosting: Firebase Hosting (Spark plan), project `kuontam-website`
 
 ## Structure

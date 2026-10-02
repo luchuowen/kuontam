@@ -1,6 +1,8 @@
 # Decisions and current facts
 
 ## Hosting and domain
+- Client domain kuontamsystems.co.ke (bought by the owner at HostPinnacle, 2026-10-02) is the primary URL;
+  canonical/OG point there. Company email: info@kuontamsystems.co.ke (footer + profile p.8).
 - Firebase Hosting, project `kuontam-website`, Spark (no-cost) plan; owner account luchuowen@gmail.com.
   No billing account is linked; keep it that way.
 - Default URL https://kuontam-website.web.app. Custom domain kuontam.navac.co.ke via one CNAME

@@ -16,4 +16,4 @@ paths:
   `[data-on]/[data-off]` text swaps and `[data-kon]/[data-koff]` kW readouts flip in `setOut()`.
   `.lk[data-k]` cards open Systems row k.
 - `og.jpg` must stay 1200×630 (rebuild from `source/og-image.html`); `<head>` OG URLs use
-  https://kuontam.navac.co.ke/.
+  https://kuontamsystems.co.ke/.

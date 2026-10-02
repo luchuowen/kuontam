@@ -7,7 +7,7 @@ Everything ships from `public/`; `public/index.html` holds the HTML, CSS and JS 
 - verify quick: `bash scripts/factory-check.sh quick` · full: `bash scripts/factory-check.sh full`
 - preview: `npx serve public` (or `python3 -m http.server -d public 8080`)
 - deploy (owner-run, critical): `firebase deploy --only hosting --project kuontam-website`
-- live health: `curl -sI https://kuontam-website.web.app/` · `https://kuontam.navac.co.ke/`
+- live health: `curl -sI https://kuontam-website.web.app/` · `https://kuontamsystems.co.ke/`
 
 ## Loop
 1. `/change <slug>` sizes the work and opens `.factory/changes/…` (trivial = no artifact).
