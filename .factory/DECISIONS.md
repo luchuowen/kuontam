@@ -57,3 +57,4 @@
 - Firebase (kuontam.navac.co.ke, web.app) 301-redirects every path to https://kuontamsystems.co.ke/ so Google sees one site.
 - Lighthouse (local): Performance 95, Accessibility 100, Best Practices 100, SEO 100.
 - Phone / WhatsApp: 0712 219 038 (+254712219038). Used in survey section (WhatsApp + Call), footer, mobile menu, form error fallback, JSON-LD telephone + contactPoint.
+- WhatsApp: in-page chat window (W1, picked 2026-10-02) opened by any [data-wa] link; topic chips + name + message, then hands a prefilled message to wa.me/254712219038 in a new tab/app. wa.me href kept as no-JS fallback.

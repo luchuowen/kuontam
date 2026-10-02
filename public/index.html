@@ -429,6 +429,36 @@ footer a{transition:color .25s}footer a:hover{color:#fff}
 body.pvlock{overflow:hidden}
 @media(max-width:700px){.pv .pvn{display:none}.pv .pdl span{display:none}.pv .pdl{padding:0 .9rem}.pv .pvs{padding:1rem .6rem 6rem;gap:.7rem}}
 .msheet .mcall{display:block;text-align:center;margin-top:10px;font:600 .7rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:.7rem 0}
+
+/* WhatsApp chat window */
+.wadim{position:fixed;inset:0;z-index:84;background:rgba(28,26,27,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+.wadim.on{opacity:1;visibility:visible;transition:opacity .4s}
+.wa{position:fixed;right:24px;bottom:24px;z-index:85;width:360px;max-width:calc(100% - 32px);background:var(--paper);color:var(--ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.55);transform:translateY(24px) scale(.97);transform-origin:bottom right;opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .35s,visibility 0s .5s}
+.wa.on{transform:none;opacity:1;visibility:visible;transition:transform .5s var(--ease),opacity .35s}
+.wa .wh{background:var(--ink);color:#fff;padding:.9rem 1rem;display:flex;align-items:center;gap:.75rem}
+.wa .av{width:38px;height:38px;background:var(--red);display:grid;place-items:center;font:800 .85rem var(--display);flex:none;position:relative}
+.wa .av:after{content:"";position:absolute;right:-3px;bottom:-3px;width:10px;height:10px;border-radius:50%;background:#3ddc84;border:2px solid var(--ink)}
+.wa .wh b{display:block;font:600 .95rem var(--display)}
+.wa .wh small{font:500 .58rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#a8a19c}
+.wa .wx{margin-left:auto;width:38px;height:38px;border:1px solid #4a4446;color:#fff;font-size:1.15rem;line-height:1;display:grid;place-items:center}
+.wa .wb{padding:1rem;display:grid;gap:.8rem;background-image:linear-gradient(to right,rgba(35,31,32,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(35,31,32,.04) 1px,transparent 1px);background-size:20px 20px}
+.wa .bub{justify-self:start;background:#fff;border:1px solid var(--line);padding:.65rem .85rem;font-size:.95rem}
+.wa .bub small{display:block;font:500 .56rem var(--mono);letter-spacing:.08em;color:var(--mute);margin-top:.2rem}
+.wa .chips{display:flex;flex-wrap:wrap;gap:6px}
+.wa .chips button{border:1px solid var(--line);background:#fff;padding:.45rem .7rem;font:500 .85rem var(--display);transition:background .2s,color .2s,border-color .2s}
+.wa .chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.wa input,.wa textarea{width:100%;border:1px solid var(--line);background:#fff;padding:.75rem .85rem;font:400 16px/1.4 var(--display);color:var(--ink);border-radius:0;outline:none;transition:border-color .2s}
+.wa input:focus,.wa textarea:focus{border-color:var(--ink)}
+.wa input.bad{border-color:var(--red)}
+.wa .row{display:flex;gap:6px;align-items:stretch}
+.wa textarea{resize:none;min-height:48px;max-height:120px}
+.wa .go{width:50px;flex:none;background:var(--red);color:#fff;display:grid;place-items:center;transition:background .3s}
+.wa .go:hover{background:var(--red2)}
+.wa .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.wa button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+body.waon .mpill{opacity:0;pointer-events:none}
+@media(max-width:600px){.wa{right:0;left:0;bottom:0;width:100%;max-width:none;padding-bottom:env(safe-area-inset-bottom)}}
+@media(prefers-reduced-motion:reduce){.wa,.wadim{transition-duration:.01s}}
 </style></head><body>
 
 <div class="wire-top" id="wt" aria-hidden="true"></div>
@@ -454,6 +484,16 @@ body.pvlock{overflow:hidden}
     <a class="pdl" href="profile/kuontam-company-profile.pdf" download="Kuontam Systems - Company Profile.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Download PDF</span></a>
     <button class="px" id="pvx" aria-label="Close profile">×</button></div>
   <div class="pvs" id="pvs"><img data-src="profile/p-1.jpg" alt="Company profile page 1 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-2.jpg" alt="Company profile page 2 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-3.jpg" alt="Company profile page 3 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-4.jpg" alt="Company profile page 4 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-5.jpg" alt="Company profile page 5 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-6.jpg" alt="Company profile page 6 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-7.jpg" alt="Company profile page 7 of 8" width="909" height="1287" loading="lazy"><img data-src="profile/p-8.jpg" alt="Company profile page 8 of 8" width="909" height="1287" loading="lazy"></div>
+</div>
+<div class="wadim" id="wadim"></div>
+<div class="wa" id="wa" role="dialog" aria-modal="true" aria-labelledby="wat" aria-hidden="true">
+  <div class="wh"><div class="av" aria-hidden="true">KS</div><div><b id="wat">Kuontam Systems</b><small>WhatsApp · 0712 219 038</small></div><button class="wx" id="wax" aria-label="Close">×</button></div>
+  <div class="wb">
+    <div class="bub">How can we help?<small>Mon–Fri 8–5 · Sat 9–1</small></div>
+    <div class="chips" id="wachips"><button type="button" aria-pressed="false">Solar &amp; power</button><button type="button" aria-pressed="false">CCTV &amp; access</button><button type="button" aria-pressed="false">Fire alarms</button><button type="button" aria-pressed="false">Automation</button><button type="button" aria-pressed="false">Site survey</button><button type="button" aria-pressed="false">Support</button></div>
+    <input id="waname" placeholder="Your name" autocomplete="name" aria-label="Your name">
+    <div class="row"><textarea id="wamsg" rows="1" placeholder="Message" aria-label="Message"></textarea><button class="go" id="wago" aria-label="Continue in WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
+  </div>
 </div>
 <button class="mpill" id="mpill" aria-controls="msheet" aria-expanded="false"><span class="dot"></span><span class="t1">Menu</span><span class="t2">Close</span></button>
 
@@ -578,7 +618,7 @@ body.pvlock{overflow:hidden}
 <section class="quote" id="survey"><span class="grid-bg"></span><div class="wrap">
   <div><div class="eyebrow rv">Site survey</div><h2 class="rv" data-d="1" style="margin-top:1rem">Tell us about the building. We'll engineer the rest.</h2>
     <p class="l rv" data-d="2">A few details is enough. We'll call to arrange a site survey.</p>
-    <div class="ctas rv" data-d="3" style="margin-top:1.8rem;display:flex;gap:.8rem;flex-wrap:wrap"><a class="btn inv" href="https://wa.me/254712219038?text=Hello%20Kuontam%20Systems%2C%20I%27d%20like%20to%20book%20a%20site%20survey." target="_blank" rel="noopener">WhatsApp us</a><a class="btn inv" href="tel:+254712219038">Call 0712 219 038</a></div></div>
+    <div class="ctas rv" data-d="3" style="margin-top:1.8rem;display:flex;gap:.8rem;flex-wrap:wrap"><a class="btn inv" href="https://wa.me/254712219038?text=Hello%20Kuontam%20Systems%2C%20I%27d%20like%20to%20book%20a%20site%20survey." target="_blank" rel="noopener" data-wa>WhatsApp us</a><a class="btn inv" href="tel:+254712219038">Call 0712 219 038</a></div></div>
   <form id="qf" class="fa rv" data-d="2" novalidate>
  <div class="steps"><span class="on">1 · Building</span><span>2 · Systems</span><span>3 · Contact</span><i class="bar"></i></div>
  <fieldset class="st" data-s="1"><legend>What kind of building?</legend><div class="tiles"><label><input type="radio" name="bt" id="bt0" checked><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6"/></svg>Home</span></label><label><input type="radio" name="bt" id="bt1" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M11 21v-3h2v3"/></svg>Office or retail</span></label><label><input type="radio" name="bt" id="bt2" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5M22 9v6"/></svg>School or clinic</span></label><label><input type="radio" name="bt" id="bt3" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V10l6 4V10l6 4V6h6v15zM7 17h2M12 17h2M17 17h2"/></svg>Industrial</span></label><label><input type="radio" name="bt" id="bt4" ><span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h8M8 21V5M8 5h12M8 5l-4 4M18 5v5M17 10h2v3h-2z"/></svg>New development</span></label></div></fieldset>
@@ -593,7 +633,7 @@ body.pvlock{overflow:hidden}
 
 <footer><div class="wrap">
   <div class="top">
-    <div class="fbrand"><img src="img/logo_white-96.png" alt="Kuontam Systems" width="48" height="46" loading="lazy"><p>Solar, electrical, security, fire and network systems for Kenyan buildings.</p><a class="fmail" href="tel:+254712219038">0712 219 038</a><br><a class="fmail" href="mailto:info@kuontamsystems.co.ke">info@kuontamsystems.co.ke</a><br><a class="fmail" href="https://wa.me/254712219038?text=Hello%20Kuontam%20Systems%2C%20I%27d%20like%20to%20book%20a%20site%20survey." target="_blank" rel="noopener">WhatsApp us</a></div>
+    <div class="fbrand"><img src="img/logo_white-96.png" alt="Kuontam Systems" width="48" height="46" loading="lazy"><p>Solar, electrical, security, fire and network systems for Kenyan buildings.</p><a class="fmail" href="tel:+254712219038">0712 219 038</a><br><a class="fmail" href="mailto:info@kuontamsystems.co.ke">info@kuontamsystems.co.ke</a><br><a class="fmail" href="https://wa.me/254712219038?text=Hello%20Kuontam%20Systems%2C%20I%27d%20like%20to%20book%20a%20site%20survey." target="_blank" rel="noopener" data-wa>WhatsApp us</a></div>
     <details class="fcol" open><summary><h3>Systems</h3></summary><ul><li><a href="#systems">Solar &amp; Electrical</a></li><li><a href="#systems">Automation</a></li><li><a href="#systems">Access &amp; CCTV</a></li><li><a href="#systems">Fire Detection</a></li><li><a href="#systems">Structured Cabling</a></li></ul></details>
     <details class="fcol" open><summary><h3>Company</h3></summary><ul><li><a href="#method">How we work</a></li><li><a href="#sectors">Sectors</a></li><li><a href="#faq">FAQ</a></li><li><a href="#survey">Book a site survey</a></li><li><a href="profile/kuontam-company-profile.pdf" data-profile>Company profile (PDF)</a></li></ul></details>
   </div>
@@ -669,6 +709,22 @@ $$('[data-profile]').forEach(a=>a.addEventListener('click',pvOpen));
 $('#pvx').onclick=pvClose;pv.addEventListener('click',e=>{if(e.target===pv||e.target===pvs)pvClose()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pv.classList.contains('open'))pvClose()});
 pvs.addEventListener('scroll',()=>{const imgs=pvs.querySelectorAll('img');let k=0;imgs.forEach((im,i)=>{if(im.offsetTop-pvs.scrollTop<pvs.clientHeight*.5)k=i});pvn.textContent=(k+1)+' / '+imgs.length},{passive:true});
+
+/* WhatsApp chat window: opens in-page, hands a ready message to WhatsApp */
+const wa=$('#wa'),wadim=$('#wadim'),waN=$('#waname'),waM=$('#wamsg');let waLast=null;
+function waOpen(e){if(e)e.preventDefault();waLast=document.activeElement;if(typeof dset==='function')dset(false);
+  wa.classList.add('on');wadim.classList.add('on');wa.setAttribute('aria-hidden','false');document.body.classList.add('waon');setTimeout(()=>waN.focus({preventScroll:true}),350)}
+function waClose(){wa.classList.remove('on');wadim.classList.remove('on');wa.setAttribute('aria-hidden','true');document.body.classList.remove('waon');if(waLast)waLast.focus({preventScroll:true})}
+$$('[data-wa]').forEach(a=>a.addEventListener('click',waOpen));
+$('#wax').onclick=waClose;wadim.onclick=waClose;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&wa.classList.contains('on'))waClose()});
+$$('#wachips button').forEach(b=>b.onclick=()=>$$('#wachips button').forEach(c=>c.setAttribute('aria-pressed',c===b)));
+waM.addEventListener('input',()=>{waM.style.height='auto';waM.style.height=Math.min(waM.scrollHeight,120)+'px'});
+waN.addEventListener('input',()=>waN.classList.remove('bad'));
+$('#wago').onclick=()=>{const n=waN.value.trim();if(n.length<2){waN.classList.add('bad');waN.focus();return}
+  const t=$('#wachips button[aria-pressed="true"]'),m=waM.value.trim();
+  let txt='Hello Kuontam Systems, this is '+n+'.';if(t)txt+='\nTopic: '+t.textContent;if(m)txt+='\n\n'+m;
+  window.open('https://wa.me/254712219038?text='+encodeURIComponent(txt),'_blank','noopener');waClose()};
 /* faq: one open at a time */
 const qs=$$('.qa details');qs.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)qs.forEach(o=>{if(o!==d)o.open=false})}));
 /* form */
